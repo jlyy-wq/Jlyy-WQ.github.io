@@ -1,0 +1,120 @@
+:root{
+  --bg:#0b0c10;
+  --card:#11131a;
+  --text:#e8eaf0;
+  --muted:#a9b0c3;
+  --border:#23283a;
+  --chip:#1a2033;
+  --btn:#141a2b;
+  --btn2:#1b2440;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC","Noto Sans CJK SC","Microsoft YaHei", sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.site-header{
+  padding:32px 16px 12px;
+  text-align:center;
+}
+.site-header h1{ margin:0 0 8px; font-size:28px; }
+.subtitle{ margin:0; color:var(--muted); }
+
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.controls{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+}
+
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:12px;
+}
+.tab{
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--btn);
+  color:var(--text);
+  cursor:pointer;
+}
+.tab.active{
+  background:var(--btn2);
+  border-color:#3a4a86;
+}
+
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+#search, #tagFilter{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#0f1220;
+  color:var(--text);
+}
+#search{ flex: 1 1 320px; }
+#tagFilter{ flex: 0 0 180px; }
+
+.meta{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.list{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:12px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+}
+.card h3{ margin:0 0 8px; font-size:18px; }
+.small{ color:var(--muted); font-size:13px; margin:6px 0 10px; }
+.note{ color:var(--text); opacity:0.95; line-height:1.55; margin:0 0 10px; }
+
+.chips{ display:flex; flex-wrap:wrap; gap:6px; }
+.chip{
+  background:var(--chip);
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:12px;
+}
+
+.link{
+  display:inline-block;
+  margin-top:10px;
+  color:#9bb3ff;
+  text-decoration:none;
+}
+.link:hover{ text-decoration:underline; }
+
+.site-footer{
+  padding:22px 16px 36px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
