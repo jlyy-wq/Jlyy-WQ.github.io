@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>阅读与收听报告</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">📊</div>
+        <div>
+          <h1>YEAR / MONTH REPORT</h1>
+          <p class="subtitle">自动根据 data.json 生成你的月报与年报（可打印保存 PDF）</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Lists</a>
+        <a class="nav-link active" href="./report.html">Report</a>
+        <a class="nav-link" href="./about.html" onclick="return false;">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="filters">
+        <select id="yearSelect"></select>
+        <select id="monthSelect">
+          <option value="all">全年（年报）</option>
+          <option value="01">1 月</option>
+          <option value="02">2 月</option>
+          <option value="03">3 月</option>
+          <option value="04">4 月</option>
+          <option value="05">5 月</option>
+          <option value="06">6 月</option>
+          <option value="07">7 月</option>
+          <option value="08">8 月</option>
+          <option value="09">9 月</option>
+          <option value="10">10 月</option>
+          <option value="11">11 月</option>
+          <option value="12">12 月</option>
+        </select>
+        <button id="printBtn" class="tag" type="button">打印/保存 PDF</button>
+      </div>
+      <div class="meta">
+        <span id="rangeText">—</span>
+      </div>
+    </section>
+
+    <section class="content">
+      <div>
+        <div class="cards" id="summaryCards"></div>
+        <div class="panel" style="margin-top:12px;">
+          <h3 style="margin:0 0 10px;">Top 标签</h3>
+          <div id="topTags" class="tag-cloud"></div>
+        </div>
+
+        <div class="panel" style="margin-top:12px;">
+          <h3 style="margin:0 0 10px;">本期完成清单（按 date 倒序）</h3>
+          <div id="doneList" class="cards"></div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="side-block">
+          <div class="side-title">说明</div>
+          <div class="quick">
+            <div>统计口径：只统计有 <b>date</b> 的条目（代表本期完成）。</div>
+            <div>如果你希望“想看/在看”也进入统计，我们可以加开关。</div>
+            <div style="margin-top:8px;">小技巧：在浏览器里打印可直接导出 PDF 作为“月报/年报”。</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> · <a href="./index.html">返回清单</a></p>
+    </footer>
+  </main>
+
+  <script src="report.js"></script>
+</body>
+</html>
