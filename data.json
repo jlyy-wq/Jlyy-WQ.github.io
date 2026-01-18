@@ -6,41 +6,11 @@
     "year": 2006,
     "rating": 5,
     "status": "已看",
+    "date": "2026-01-15",
     "tags": ["科幻", "宏大", "中国"],
     "note": "想象力像开了粒子加速器，读完脑子嗡嗡的。",
     "link": ""
+    "cover": ""
   },
-  {
-    "type": "movie",
-    "title": "星际穿越",
-    "creator": "Christopher Nolan",
-    "year": 2014,
-    "rating": 5,
-    "status": "已看",
-    "tags": ["科幻", "亲情", "宇宙"],
-    "note": "配乐一响，整个人被拎到宇宙边缘。",
-    "link": ""
-  },
-  {
-    "type": "podcast",
-    "title": "某期播客标题（示例）",
-    "creator": "节目名 / 主播",
-    "year": 2025,
-    "rating": 4,
-    "status": "已看",
-    "tags": ["思维", "访谈"],
-    "note": "信息密度高，适合边走路边听。",
-    "link": ""
-  },
-  {
-    "type": "song",
-    "title": "某首歌（示例）",
-    "creator": "歌手名",
-    "year": 2020,
-    "rating": 4,
-    "status": "已看",
-    "tags": ["夜晚", "循环"],
-    "note": "适合深夜写东西时循环。",
-    "link": ""
-  }
+
 ]
