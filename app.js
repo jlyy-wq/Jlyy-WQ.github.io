@@ -8,13 +8,17 @@ const TYPE_LABEL = {
 
 let allItems = [];
 let currentType = "all";
+let currentStatus = "all";
 let currentTag = "all";
 let keyword = "";
+
 
 const listEl = document.getElementById("list");
 const countEl = document.getElementById("count");
 const tagFilterEl = document.getElementById("tagFilter");
+const statusFilterEl = document.getElementById("statusFilter");
 const searchEl = document.getElementById("search");
+
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -39,25 +43,46 @@ function buildTagOptions(items) {
   tagFilterEl.innerHTML = `<option value="all">全部标签</option>` +
     tags.map(t => `<option value="${encodeURIComponent(t)}">${t}</option>`).join("");
 }
+function buildStatusOptions(items) {
+  const set = new Set();
+  items.forEach(it => {
+    const s = safeText(it.status).trim();
+    if (s) set.add(s);
+  });
+  const statuses = Array.from(set).sort((a, b) => a.localeCompare(b, "zh"));
+
+  statusFilterEl.innerHTML =
+    `<option value="all">全部状态</option>` +
+    statuses.map(s => `<option value="${encodeURIComponent(s)}">${s}</option>`).join("");
+}
 
 function match(it) {
   if (currentType !== "all" && it.type !== currentType) return false;
+
+  if (currentStatus !== "all") {
+    const s = decodeURIComponent(currentStatus);
+    if (safeText(it.status).trim() !== s) return false;
+  }
+
   if (currentTag !== "all") {
     const t = decodeURIComponent(currentTag);
     const tags = it.tags || [];
     if (!tags.includes(t)) return false;
   }
+
   if (!keyword) return true;
 
   const hay = [
     it.title,
     it.creator,
     it.note,
+    it.status,
     (it.tags || []).join(" ")
   ].map(normalize).join(" | ");
 
   return hay.includes(keyword);
 }
+
 
 function render(items) {
   listEl.innerHTML = "";
@@ -80,7 +105,8 @@ function render(items) {
 
     const meta = document.createElement("div");
     meta.className = "small";
-    meta.textContent = `${TYPE_LABEL[it.type] || it.type} · ${safeText(it.creator)} · ${safeText(it.year)} · ${stars(it.rating)}`;
+    meta.textContent = `${TYPE_LABEL[it.type] || it.type} · ${safeText(it.creator)} · ${safeText(it.year)} · ${safeText(it.status) || "未标注"} · ${stars(it.rating)}`;
+
 
     const note = document.createElement("p");
     note.className = "note";
@@ -140,15 +166,21 @@ function bindEvents() {
     update();
   });
 }
+statusFilterEl.addEventListener("change", (e) => {
+  currentStatus = e.target.value;
+  update();
+});
 
 fetch("data.json", { cache: "no-store" })
   .then(r => r.json())
-  .then(data => {
-    allItems = Array.isArray(data) ? data : [];
-    buildTagOptions(allItems);
-    bindEvents();
-    update();
-  })
+  ..then(data => {
+  allItems = Array.isArray(data) ? data : [];
+  buildStatusOptions(allItems);
+  buildTagOptions(allItems);
+  bindEvents();
+  update();
+})
+
   .catch(() => {
     listEl.innerHTML = `<div class="card">data.json 读取失败。请确认文件名、JSON 格式是否正确，并且和 index.html 在同一层级。</div>`;
   });
