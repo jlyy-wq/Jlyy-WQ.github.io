@@ -6,43 +6,80 @@
   <title>我的书影音清单</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header class="site-header">
-    <h1>我的书影音清单</h1>
-    <p class="subtitle">记录我看过的书、电影、播客与听过的歌。</p>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">📖</div>
+        <div>
+          <h1>INDIVIDUAL READING</h1>
+          <p class="subtitle">Notes, thoughts & daily life · 书 / 影 / 播客 / 音乐</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link active" href="./index.html">Lists</a>
+        <a class="nav-link" href="./report.html">Report</a>
+        <a class="nav-link" href="./about.html" onclick="return false;" title="以后可以做关于页">About</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="controls">
+  <main class="wrap">
+    <section class="panel">
       <div class="tabs">
-        <button class="tab active" data-type="all">全部</button>
-        <button class="tab" data-type="book">📚 书</button>
-        <button class="tab" data-type="movie">🎬 电影</button>
-        <button class="tab" data-type="podcast">🎙 播客</button>
-        <button class="tab" data-type="song">🎵 歌曲</button>
+        <button class="tab active" data-type="all">All</button>
+        <button class="tab" data-type="book">Books</button>
+        <button class="tab" data-type="movie">Movies</button>
+        <button class="tab" data-type="podcast">Podcasts</button>
+        <button class="tab" data-type="song">Songs</button>
       </div>
 
       <div class="filters">
-  <input id="search" type="search" placeholder="搜索标题 / 作者 / 短评 / 标签…" />
-  <select id="statusFilter">
-    <option value="all">全部状态</option>
-  </select>
-  <select id="tagFilter">
-    <option value="all">全部标签</option>
-  </select>
-</div>
+        <input id="search" type="search" placeholder="搜索 标题 / 作者 / 短评 / 标签…" />
+        <select id="statusFilter">
+          <option value="all">全部状态</option>
+        </select>
+        <select id="tagFilter">
+          <option value="all">全部标签</option>
+        </select>
+      </div>
 
       <div class="meta">
         <span id="count">0</span> 条记录
+        <span class="dot">·</span>
+        <span id="hint">点击右侧标签也可以筛选</span>
       </div>
     </section>
 
-    <section id="list" class="list"></section>
-  </main>
+    <section class="content">
+      <div id="list" class="cards"></div>
 
-  <footer class="site-footer">
-    <p>© <span id="year"></span> 我的清单 · 托管于 GitHub Pages</p>
-  </footer>
+      <aside class="sidebar">
+        <div class="side-block">
+          <div class="side-title">Reading Lists</div>
+          <div class="side-actions">
+            <button id="resetFilters" class="mini">Reset</button>
+          </div>
+        </div>
+
+        <div class="side-block">
+          <div class="side-title">标签（点击筛选）</div>
+          <div id="tagCloud" class="tag-cloud"></div>
+        </div>
+
+        <div class="side-block">
+          <div class="side-title">快速统计</div>
+          <div class="quick" id="quickStats">加载中…</div>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> 我的清单 · GitHub Pages · <a href="./report.html">查看月报/年报</a></p>
+    </footer>
+  </main>
 
   <script src="app.js"></script>
 </body>
